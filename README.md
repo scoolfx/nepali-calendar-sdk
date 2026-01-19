@@ -4,9 +4,10 @@ A lightweight, high-precision Java library for converting dates between the Greg
 
 ## Features
 - **Bi-directional Conversion**: Convert AD to BS and BS to AD.
+- **Date Range Queries**: Get min/max supported AD dates.
 - **High Precision**: Uses an internal JSON data source containing exact month lengths.
 - **Type Safe**: Utilizes Java 21 Records and `java.time.LocalDate`.
-- **Supported Range**: B.S. 2000 to B.S. 2085.
+- **Supported Range**: B.S. 2000 to B.S. 2085 (April 14, 1943 to April 13, 2029 AD).
 
 ## Installation
 
@@ -77,6 +78,17 @@ BsDate bsDate = new BsDate(2081, BsMonth.BAISAKH, 1);
 LocalDate adDate = converter.toAd(bsDate);
 
 System.out.println(adDate); // Output: 2024-04-13
+```
+
+### Get Supported Date Range
+```java
+import java.time.LocalDate;
+
+LocalDate minDate = converter.getMinSupportedAdDate();
+LocalDate maxDate = converter.getMaxSupportedAdDate();
+
+System.out.println("Min supported AD date: " + minDate); // Output: 1943-04-14
+System.out.println("Max supported AD date: " + maxDate); // Output: 2029-04-13
 ```
 
 ### Error Handling
