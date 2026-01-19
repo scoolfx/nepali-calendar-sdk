@@ -13,15 +13,30 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
+/**
+ * The core engine for converting dates between the Gregorian (A.D.) and
+ * Bikram Sambat (B.S.) calendar systems.
+ * <p>
+ * This converter uses a high-precision data file containing historical month lengths
+ * to ensure accuracy across supported years (B.S. 2000 to 2085).
+ */
 public class NepaliDateConverter {
 
     private final Map<Integer, InternalYearData> yearMap = new HashMap<>();
     private final NavigableMap<LocalDate, InternalYearData> adMap = new TreeMap<>();
 
+    /**
+     * Initializes the converter and loads the calendar data from the internal JSON resource.
+     *
+     * @throws RuntimeException if the internal data file is missing or corrupted.
+     */
     public NepaliDateConverter() {
         loadData();
     }
 
+    /**
+     * Internal method to load year configurations into memory for fast lookup.
+     */
     private void loadData() {
         try (InputStream is = getClass().getResourceAsStream("/nepali-calendar-data.json")) {
             ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
@@ -35,6 +50,13 @@ public class NepaliDateConverter {
         }
     }
 
+    /**
+     * Converts a Gregorian (A.D.) date to a Nepali (B.S.) date.
+     *
+     * @param adDate The A.D. date to convert.
+     * @return A {@link BsDate} object representing the equivalent Nepali date.
+     * @throws NepaliCalendarException if the date is outside the supported range.
+     */
     public BsDate toBs(LocalDate adDate) {
         var entry = adMap.floorEntry(adDate);
 
@@ -59,6 +81,13 @@ public class NepaliDateConverter {
         throw new NepaliCalendarException("Logic error in date conversion", NepaliCalendarException.ErrorCode.INVALID_BS_DATE);
     }
 
+    /**
+     * Converts a Nepali (B.S.) date to a Gregorian (A.D.) date.
+     *
+     * @param bsDate The B.S. date to convert.
+     * @return A {@link LocalDate} object representing the equivalent Gregorian date.
+     * @throws NepaliCalendarException if the B.S. year is unsupported or the day is invalid for the month.
+     */
     public LocalDate toAd(BsDate bsDate) {
         InternalYearData config = yearMap.get(bsDate.year());
 

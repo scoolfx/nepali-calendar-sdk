@@ -1,1 +1,95 @@
-# nepali-calendar-sdk
+# Nepali Calendar SDK (Bikram Sambat)
+
+A lightweight, high-precision Java library for converting dates between the Gregorian (A.D.) and Bikram Sambat (B.S.) calendar systems. Built for Java 21+.
+
+## Features
+- **Bi-directional Conversion**: Convert AD to BS and BS to AD.
+- **High Precision**: Uses an internal JSON data source containing exact month lengths.
+- **Type Safe**: Utilizes Java 21 Records and `java.time.LocalDate`.
+- **Supported Range**: B.S. 2000 to B.S. 2085.
+
+## Installation
+
+This artifact is hosted on **GitHub Packages**. To use it, you must configure your `settings.xml` and `pom.xml`.
+
+### 1. Configure Authentication (`~/.m2/settings.xml`)
+GitHub Packages requires a Personal Access Token (PAT) with `read:packages` permissions to download the SDK.
+
+```xml
+<settings>
+    <servers>
+        <server>
+            <id>github</id>
+            <username>YOUR_GITHUB_USERNAME</username>
+            <password>YOUR_PERSONAL_ACCESS_TOKEN</password>
+        </server>
+    </servers>
+</settings>
+```
+
+### 2. Add Repository and Dependency to `pom.xml`
+
+```xml
+<repositories>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/scoolfx/nepali-calendar-sdk</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>io.scoolfx</groupId>
+        <artifactId>nepali-calendar-sdk</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
+```
+
+## Usage
+
+### Initialize the Converter
+```java
+import io.scoolfx.converter.NepaliDateConverter;
+
+NepaliDateConverter converter = new NepaliDateConverter();
+```
+
+### Convert A.D. to B.S.
+```java
+import java.time.LocalDate;
+import io.scoolfx.model.BsDate;
+
+LocalDate adDate = LocalDate.of(2024, 4, 13);
+BsDate bsDate = converter.toBs(adDate);
+
+System.out.println(bsDate.format()); // Output: 2081-01-01
+System.out.println(bsDate.month().getName()); // Output: Baisakh
+```
+
+### Convert B.S. to A.D.
+```java
+import io.scoolfx.model.BsDate;
+import io.scoolfx.model.BsMonth;
+import java.time.LocalDate;
+
+BsDate bsDate = new BsDate(2081, BsMonth.BAISAKH, 1);
+LocalDate adDate = converter.toAd(bsDate);
+
+System.out.println(adDate); // Output: 2024-04-13
+```
+
+### Error Handling
+The SDK throws `NepaliCalendarException` if a date is out of range or mathematically invalid.
+
+```java
+try {
+    converter.toBs(LocalDate.of(1900, 1, 1));
+} catch (NepaliCalendarException e) {
+    System.out.println("Error: " + e.getErrorCode()); // Output: OUT_OF_RANGE
+}
+```
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
