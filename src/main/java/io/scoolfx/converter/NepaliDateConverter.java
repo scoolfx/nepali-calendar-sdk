@@ -111,4 +111,22 @@ public class NepaliDateConverter {
         }
         return config.startDate().plusDays(daysOffset);
     }
+
+    /**
+     * Returns the minimum supported Gregorian (A.D.) date.
+     *
+     * @return The earliest A.D. date that can be converted to B.S.
+     */
+    public LocalDate getMinSupportedAdDate() {
+        return adMap.firstKey();
+    }
+
+    /**
+     * Returns the maximum supported Gregorian (A.D.) date.
+     *
+     * @return The latest A.D. date that can be converted to B.S.
+     */
+    public LocalDate getMaxSupportedAdDate() {
+        return adMap.lastEntry().getValue().endDate();
+    }
 }

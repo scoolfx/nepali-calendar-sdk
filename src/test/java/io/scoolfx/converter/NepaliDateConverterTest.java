@@ -88,6 +88,22 @@ class NepaliDateConverterTest {
             assertEquals(endAd, converter.toAd(endBs));
         }
 
+        @Test
+        @DisplayName("getMinSupportedAdDate should return first supported AD date")
+        void testGetMinSupportedAdDate() {
+            LocalDate expectedMin = LocalDate.of(1943, 4, 14);
+            LocalDate actualMin = converter.getMinSupportedAdDate();
+            assertEquals(expectedMin, actualMin, "Min supported AD date should be April 14, 1943");
+        }
+
+        @Test
+        @DisplayName("getMaxSupportedAdDate should return last supported AD date")
+        void testGetMaxSupportedAdDate() {
+            LocalDate expectedMax = LocalDate.of(2029, 4, 13);
+            LocalDate actualMax = converter.getMaxSupportedAdDate();
+            assertEquals(expectedMax, actualMax, "Max supported AD date should be April 13, 2029");
+        }
+
     }
 
     @Nested
