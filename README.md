@@ -27,7 +27,7 @@ A lightweight, high-precision Java library for converting dates between the Greg
 
 <dependencies>
     <dependency>
-        <groupId>io.github.scoolfx</groupId>
+        <groupId>com.github.scoolfx</groupId>
         <artifactId>nepali-calendar-sdk</artifactId>
         <version>1.0.0</version>
     </dependency>
