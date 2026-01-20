@@ -1,8 +1,8 @@
-package io.github.scoolfx.converter;
+package com.github.scoolfx.converter;
 
-import io.github.scoolfx.exception.NepaliCalendarException;
-import io.github.scoolfx.model.BsDate;
-import io.github.scoolfx.model.BsMonth;
+import com.github.scoolfx.exception.NepaliCalendarException;
+import com.github.scoolfx.model.BsDate;
+import com.github.scoolfx.model.BsMonth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

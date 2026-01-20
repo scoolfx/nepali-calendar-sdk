@@ -1,4 +1,4 @@
-package io.github.scoolfx.model;
+package com.github.scoolfx.model;
 
 public enum BsMonth {
     BAISAKH(1, "Baisakh"), JESHTHA(2, "Jeshtha"), ASAR(3, "Asar"),

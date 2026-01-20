@@ -1,4 +1,4 @@
-package io.github.scoolfx.exception;
+package com.github.scoolfx.exception;
 
 public class NepaliCalendarException extends RuntimeException {
 

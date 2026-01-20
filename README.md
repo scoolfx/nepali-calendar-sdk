@@ -29,16 +29,21 @@ A lightweight, high-precision Java library for converting dates between the Greg
     <dependency>
         <groupId>com.github.scoolfx</groupId>
         <artifactId>nepali-calendar-sdk</artifactId>
-        <version>v1.0.0</version>
+        <version>v1.0.1</version>
     </dependency>
 </dependencies>
 ```
+
+### Testing & Reliability
+- Comprehensive unit tests using JUnit 5
+- Covers core conversions, boundary dates (1943–2029), leap rules, invalid inputs
+
 
 ## Usage
 
 ### Initialize the Converter
 ```java
-import io.github.scoolfx.converter.NepaliDateConverter;
+import com.github.scoolfx.converter.NepaliDateConverter;
 
 NepaliDateConverter converter = new NepaliDateConverter();
 ```
@@ -46,7 +51,7 @@ NepaliDateConverter converter = new NepaliDateConverter();
 ### Convert A.D. to B.S.
 ```java
 import java.time.LocalDate;
-import io.github.scoolfx.model.BsDate;
+import com.github.scoolfx.model.BsDate;
 
 LocalDate adDate = LocalDate.of(2024, 4, 13);
 BsDate bsDate = converter.toBs(adDate);
@@ -57,8 +62,8 @@ System.out.println(bsDate.month().getName()); // Output: Baisakh
 
 ### Convert B.S. to A.D.
 ```java
-import io.github.scoolfx.model.BsDate;
-import io.github.scoolfx.model.BsMonth;
+import com.github.scoolfx.model.BsDate;
+import com.github.scoolfx.model.BsMonth;
 import java.time.LocalDate;
 
 BsDate bsDate = new BsDate(2081, BsMonth.BAISAKH, 1);

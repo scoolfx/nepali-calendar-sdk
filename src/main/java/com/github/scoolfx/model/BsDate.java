@@ -1,4 +1,4 @@
-package io.github.scoolfx.model;
+package com.github.scoolfx.model;
 
 public record BsDate(int year, BsMonth month, int day) {
     public String format() {
