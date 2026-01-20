@@ -1,9 +1,12 @@
-package io.scoolfx.converter;
+package io.github.scoolfx.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import io.scoolfx.exception.NepaliCalendarException;
-import io.scoolfx.model.*;
+import io.github.scoolfx.exception.NepaliCalendarException;
+import io.github.scoolfx.model.BsDate;
+import io.github.scoolfx.model.BsMonth;
+import io.github.scoolfx.model.InternalYearData;
+import io.github.scoolfx.model.*;
 
 import java.io.InputStream;
 import java.time.LocalDate;

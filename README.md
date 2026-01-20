@@ -11,36 +11,23 @@ A lightweight, high-precision Java library for converting dates between the Greg
 
 ## Installation
 
-This artifact is hosted on **GitHub Packages**. To use it, you must configure your `settings.xml` and `pom.xml`.
-
-### 1. Configure Authentication (`~/.m2/settings.xml`)
-GitHub Packages requires a Personal Access Token (PAT) with `read:packages` permissions to download the SDK.
-
-```xml
-<settings>
-    <servers>
-        <server>
-            <id>github</id>
-            <username>YOUR_GITHUB_USERNAME</username>
-            <password>YOUR_PERSONAL_ACCESS_TOKEN</password>
-        </server>
-    </servers>
-</settings>
-```
-
-### 2. Add Repository and Dependency to `pom.xml`
-
+### 1. Add the JitPack repository to your build file
 ```xml
 <repositories>
     <repository>
-        <id>github</id>
-        <url>https://maven.pkg.github.com/scoolfx/nepali-calendar-sdk</url>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
     </repository>
 </repositories>
+```
+
+### 2. Add Dependency to `pom.xml`
+
+```xml
 
 <dependencies>
     <dependency>
-        <groupId>io.scoolfx</groupId>
+        <groupId>io.github.scoolfx</groupId>
         <artifactId>nepali-calendar-sdk</artifactId>
         <version>1.0.0</version>
     </dependency>
@@ -51,7 +38,7 @@ GitHub Packages requires a Personal Access Token (PAT) with `read:packages` perm
 
 ### Initialize the Converter
 ```java
-import io.scoolfx.converter.NepaliDateConverter;
+import io.github.scoolfx.converter.NepaliDateConverter;
 
 NepaliDateConverter converter = new NepaliDateConverter();
 ```
@@ -59,7 +46,7 @@ NepaliDateConverter converter = new NepaliDateConverter();
 ### Convert A.D. to B.S.
 ```java
 import java.time.LocalDate;
-import io.scoolfx.model.BsDate;
+import io.github.scoolfx.model.BsDate;
 
 LocalDate adDate = LocalDate.of(2024, 4, 13);
 BsDate bsDate = converter.toBs(adDate);
@@ -70,8 +57,8 @@ System.out.println(bsDate.month().getName()); // Output: Baisakh
 
 ### Convert B.S. to A.D.
 ```java
-import io.scoolfx.model.BsDate;
-import io.scoolfx.model.BsMonth;
+import io.github.scoolfx.model.BsDate;
+import io.github.scoolfx.model.BsMonth;
 import java.time.LocalDate;
 
 BsDate bsDate = new BsDate(2081, BsMonth.BAISAKH, 1);

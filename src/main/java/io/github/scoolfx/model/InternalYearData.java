@@ -1,4 +1,4 @@
-package io.scoolfx.model;
+package io.github.scoolfx.model;
 
 import java.time.LocalDate;
 import java.util.Arrays;
