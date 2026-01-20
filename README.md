@@ -29,7 +29,7 @@ A lightweight, high-precision Java library for converting dates between the Greg
     <dependency>
         <groupId>com.github.scoolfx</groupId>
         <artifactId>nepali-calendar-sdk</artifactId>
-        <version>1.0.0</version>
+        <version>v1.0.0</version>
     </dependency>
 </dependencies>
 ```
